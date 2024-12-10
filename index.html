@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #ecf0f1;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background-color: #34495e;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .input-field {
+            width: 80%;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #bdc3c7;
+            margin-bottom: 20px;
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #2980b9;
+            box-shadow: 0 0 15px rgba(41, 128, 185, 0.5);
+        }
+
+        .check-btn {
+            padding: 10px 20px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .check-btn:hover {
+            background-color: #3498db;
+            transform: scale(1.05);
+        }
+
+        .check-btn:focus {
+            outline: none;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #ecf0f1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Palindrome Checker</h1>
+        <input type="text" id="text-input" class="input-field" placeholder="Enter text here"><br>
+        <button type="button" id="check-btn" class="check-btn">Check Palindrome</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const checkButton = document.getElementById('check-btn');
+        const textInput = document.getElementById('text-input');
+        const result = document.getElementById('result');
+
+        const cleanText = (text) => {
+            return text.toLowerCase().replace(/[^a-z0-9]/g, '');
+        };
+
+        const isPalindrome = (text) => {
+            const cleaned = cleanText(text);
+            return cleaned === cleaned.split('').reverse().join('');
+        };
+
+        checkButton.addEventListener("click", () => {
+            const input = textInput.value.trim();
+
+            if (!input) {
+                alert("Please input a value");
+                return;
+            }
+
+            if (isPalindrome(input)) {
+                result.innerText = `${input} is a palindrome`;
+                result.style.color = '#2ecc71'; // Green for palindrome
+            } else {
+                result.innerText = `${input} is not a palindrome`;
+                result.style.color = '#e74c3c'; // Red for not a palindrome
+            }
+        });
+    </script>
+</body>
+
+</html>
